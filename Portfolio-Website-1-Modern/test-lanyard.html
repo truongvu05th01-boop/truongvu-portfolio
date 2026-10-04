@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lanyard 3D Test</title>
+  <style>
+    body {
+      margin: 0;
+      background: #0f172a;
+      color: white;
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+    #lanyard-root {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="lanyard-root"></div>
+  <script src="lanyard-dist/lanyard-widget.js"></script>
+  <script type="module">
+    import { createBadgeTextures } from './script/badge-generator.js';
+
+    async function init() {
+      console.log('Generating badge textures...');
+      const badge = await createBadgeTextures('images-and-icons/images/my-profile.png');
+      console.log('Textures ready! Mounting Lanyard...');
+      
+      if (window.mountLanyard) {
+        window.mountLanyard('lanyard-root', {
+          frontImage: badge.front,
+          backImage: badge.back,
+          position: [0, 0, 28],
+          gravity: [0, -35, 0],
+          fov: 22,
+        });
+      }
+    }
+    init();
+  </script>
+</body>
+</html>

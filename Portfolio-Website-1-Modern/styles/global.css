@@ -1,0 +1,164 @@
+/* =====================================
+ * Root Variables — Dark Mode (default)
+ * ===================================== */
+:root {
+  /* ── Brand / Accent ── */
+  --main-color: #00d4ff;
+  --main-color-glow: rgba(0, 212, 255, 0.35);
+  --main-color-dim: rgba(0, 212, 255, 0.15);
+
+  /* ── Text ── */
+  --primary-color: #e8f4f8;
+  --text-secondary: #94a3b8;
+
+  /* ── Surfaces ── */
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-border: rgba(0, 212, 255, 0.12);
+
+  /* ── Background ── */
+  --background-color-in-mobile-view: radial-gradient(
+    circle closest-side at 90% center,
+    #020d18 0%,
+    #050e1a 100%,
+    #030810 200%,
+    #000509 500%
+  );
+  --background-color-in-desktop-view: radial-gradient(
+    circle closest-side at 71% center,
+    #020c18 2%,
+    #030d1a 30%,
+    #020b16 60%,
+    #000408 90%
+  );
+
+  /* ── Transition ── */
+  --theme-transition: background 0.45s ease, color 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease;
+}
+
+/* =====================================
+ * Light Mode Overrides
+ * ===================================== */
+:root.light-mode {
+  /* ── Brand / Accent ── */
+  --main-color: #3b82f6;
+  --main-color-glow: rgba(59, 130, 246, 0.3);
+  --main-color-dim: rgba(59, 130, 246, 0.12);
+
+  /* ── Text ── */
+  --primary-color: #0f172a;
+  --text-secondary: #475569;
+
+  /* ── Surfaces ── */
+  --surface: rgba(59, 130, 246, 0.05);
+  --surface-border: rgba(59, 130, 246, 0.18);
+
+  /* ── Background: trắng sáng, sạch, chuyên nghiệp ── */
+  --background-color-in-mobile-view: radial-gradient(
+    circle closest-side at 90% center,
+    #f8faff 0%,
+    #f1f5ff 100%,
+    #eaefff 200%,
+    #e2eaff 500%
+  );
+  --background-color-in-desktop-view: radial-gradient(
+    circle closest-side at 71% center,
+    #f8faff 2%,
+    #f1f5ff 30%,
+    #eaefff 60%,
+    #e2eaff 90%
+  );
+}
+
+
+/* =====================================
+ * Base Styles
+ * ===================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding: 3rem;
+  height: 100%;
+}
+
+body {
+  position: relative;
+  color: var(--primary-color);
+  font-family: "Albert Sans", sans-serif;
+  background: var(--background-color-in-mobile-view);
+  background-attachment: fixed;
+  background-size: cover;
+  transition: var(--theme-transition);
+}
+
+/* =====================================
+ * Layout Wrapper
+ * ===================================== */
+.main-wrapper {
+  --wrapper-max-width: 1180px;
+  --wrapper-padding: 2.4rem;
+
+  position: relative;
+  z-index: 1;
+  width: min(var(--wrapper-max-width), 100% - var(--wrapper-padding));
+  margin-inline: auto;
+  pointer-events: none;
+}
+
+.main-wrapper header,
+.main-wrapper nav,
+.main-wrapper section,
+.main-wrapper footer {
+  pointer-events: auto;
+}
+
+.main-wrapper main.sections-wraper {
+  pointer-events: none;
+}
+
+/* =====================================
+ * Section Styles
+ * ===================================== */
+section {
+  max-width: 600px;
+  padding-bottom: 180px;
+}
+
+section .heading {
+  font-size: 3rem;
+  color: var(--main-color);
+  margin-top: 0;
+  margin-bottom: 2rem;
+  text-align: left;
+  line-height: 1em;
+}
+
+
+/* =====================================
+ * Responsive Styles
+ * ===================================== */
+@media (width >= 50rem) { /* 800px */
+  .main-wrapper {
+    --wrapper-padding: 15%;
+  }
+}
+
+@media (width >= 900px) {
+  body {
+    background: var(--background-color-in-desktop-view);
+    background-attachment: fixed;
+    background-size: cover;
+  }
+}

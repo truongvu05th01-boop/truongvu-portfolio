@@ -1,0 +1,50 @@
+/* =====================================
+ * About Section Styles
+ * ===================================== */
+
+/* About Section Paragraph */
+.about-section__paragraph {
+  line-height: 1.6em;
+  text-align: left;
+  margin-bottom: 2.5rem;
+}
+
+/* Education and Certificates Heading */
+.about-section__education-and-certificates-heading {
+  font-size: 1.5625rem;
+  font-weight: 600;
+  color: var(--main-color);
+  margin-bottom: 1.3rem;
+}
+
+/* Education and Certificates List */
+.about-section__education-and-certificates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-left: var(--wrapper-padding);
+  border-left: 1px solid var(--main-color);
+}
+
+/* Education and Certificates Item Label */
+.about-section__education-and-certificates-list .education-and-certificates-item__label {
+  font-size: 1.125rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+/* Education and Certificates Item Date */
+.about-section__education-and-certificates-list .education-and-certificates-item__date {
+  color: var(--main-color);
+  font-weight: 300;
+}
+
+/* =====================================
+ * Responsive Styles for Screens ≥ 800px
+ * ===================================== */
+@media (width >= 50rem) {
+  .about-section__education-and-certificates-list {
+    padding-left: 2.4rem;
+  }
+}

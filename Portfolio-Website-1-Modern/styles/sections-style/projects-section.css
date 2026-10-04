@@ -1,0 +1,92 @@
+/* =====================================
+ * Project Section - Project Card List
+ * ===================================== */
+ .project-section__project-card-list.d-grid {
+  display: -ms-grid;
+  display: grid;
+  row-gap: 3.5rem;
+  border-left: 0.9px solid rgba(255, 255, 255, 0.224);
+  padding-left: 1.3rem;
+  margin-left: 0.1rem;
+  margin-top: 2rem;
+}
+
+/* =====================================
+ * Project Card
+ * ===================================== */
+.project-card {
+  --project-card-side-space: 1rem;
+
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Project Card Hover Effect */
+.project-card:hover .project-card__arrow-icon {
+  right: 0.6rem;
+  top: 0.8rem;
+}
+
+/* Project Card Arrow Icon */
+.project-card__arrow-icon {
+  --project-arrow-size: 26px;
+
+  position: absolute;
+  right: 1.1rem;
+  top: 1.3rem;
+  height: var(--project-arrow-size);
+  width: var(--project-arrow-size);
+  transition: 0.3s;
+}
+
+/* Project Card Image */
+.project-card__img {
+  border-radius: inherit;
+  height: clamp(220px, 70vw, 260px);
+  z-index: -1;
+  margin-bottom: 0.6rem;
+}
+
+/* Project Card Info Container */
+.project-card__info {
+  padding-inline: 0.3rem;
+}
+
+/* Project Title */
+.project-card__info-title {
+  font-size: 1.125rem;
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+  color: white;
+}
+
+/* Project Detail Text */
+.project-card__info-detail {
+  font-size: 0.8rem;
+  opacity: 0.5;
+  color: white;
+}
+
+/* =====================================
+ * Responsive Adjustments (min-width: 600px)
+ * ===================================== */
+@media (width >= 37.5rem /* 600px */) {
+  /* Project Card List Grid Layout */
+  .project-section__project-card-list.d-grid {
+    -ms-grid-columns: 1fr 1.3rem 1fr;
+    grid-template-columns: 1fr 1fr;
+    -webkit-column-gap: 1.3rem;
+       -moz-column-gap: 1.3rem;
+            column-gap: 1.3rem;
+  }
+}

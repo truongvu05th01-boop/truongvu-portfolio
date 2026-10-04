@@ -1,0 +1,225 @@
+/* =====================================
+ * Header Section Styles
+ * ===================================== */
+header,
+header.main-wrapper {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  pointer-events: auto;
+}
+
+/* Work status section inside header */
+.header__work-status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  opacity: 0;
+  animation: work-status-start-animation 2s forwards;
+}
+
+@keyframes work-status-start-animation{
+  to{
+    opacity: 1;
+  }
+}
+
+/* Dot indicator for work status */
+.header__work-status-dot {
+  --dot-size: 8px;
+
+  width: var(--dot-size);
+  height: var(--dot-size);
+  border-radius: 30px;
+  background-color: rgb(255, 2, 2);
+  animation: not-active-pulse-shadow 1.5s infinite ease-in-out;
+}
+
+/* Active state of work status dot */
+.header__work-status-dot.active {
+  background-color: rgb(2, 255, 39);
+  animation: active-pulse-shadow 1.5s infinite ease-in-out;
+}
+
+/* Work status text label */
+.header__work-status-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Button for downloading resume */
+.header__download-resume-btn {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  color: #000000;
+  background-color: var(--main-color);
+  border-radius: 20px;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  white-space: nowrap;
+  pointer-events: auto;
+}
+
+.header__download-resume-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 24px var(--main-color-glow);
+}
+
+/* Right group: toggle + resume btn */
+.header__right-group {
+  position: relative;
+  z-index: 20;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  opacity: 0;
+  animation: header-right-group-animation 2s forwards;
+  animation-delay: 0.5s;
+}
+
+/* =====================================
+ * Theme Toggle Button — Dark Inner Style
+ * (matches @/components/ui/dark-inner from toggles.dev)
+ * ===================================== */
+.theme-toggle-btn {
+  background: var(--main-color-dim);
+  border: 1.5px solid rgba(0, 212, 255, 0.25);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--main-color);
+  outline: none;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  pointer-events: auto;
+}
+
+:root.light-mode .theme-toggle-btn {
+  border-color: rgba(59, 130, 246, 0.25);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.12);
+}
+
+/* Subtle motion on hover as requested */
+.theme-toggle-btn:hover {
+  transform: translateY(-2px) scale(1.08);
+  background: rgba(0, 212, 255, 0.18);
+  border-color: var(--main-color);
+  box-shadow: 0 6px 16px var(--main-color-glow);
+}
+
+:root.light-mode .theme-toggle-btn:hover {
+  background: rgba(59, 130, 246, 0.15);
+  box-shadow: 0 6px 16px var(--main-color-glow);
+}
+
+.theme-toggle-btn:active {
+  transform: translateY(0) scale(0.94);
+}
+
+/* DarkInner SVG */
+.theme-toggle-dark-inner__svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  pointer-events: none;
+}
+
+.theme-toggle-dark-inner__inner,
+.theme-toggle-dark-inner__outer {
+  transform-box: view-box;
+  transform-origin: 16px 16px;
+  transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/*
+ * Dark mode state (dark:rotate-180 and dark:-rotate-180 from DarkInner):
+ * In dark mode (default):
+ * - inner path rotates 180deg
+ * - outer path rotates -180deg
+ */
+:root:not(.light-mode) .theme-toggle-dark-inner__inner,
+.theme-toggle-btn.dark .theme-toggle-dark-inner__inner {
+  transform: rotate(180deg);
+}
+
+:root:not(.light-mode) .theme-toggle-dark-inner__outer,
+.theme-toggle-btn.dark .theme-toggle-dark-inner__outer {
+  transform: rotate(-180deg);
+}
+
+/*
+ * Light mode state:
+ * - inner and outer paths return to 0deg
+ */
+:root.light-mode .theme-toggle-dark-inner__inner,
+.theme-toggle-btn.light .theme-toggle-dark-inner__inner {
+  transform: rotate(0deg);
+}
+
+:root.light-mode .theme-toggle-dark-inner__outer,
+.theme-toggle-btn.light .theme-toggle-dark-inner__outer {
+  transform: rotate(0deg);
+}
+
+@keyframes resume-btn-start-animation{
+  to{
+    opacity: 1;
+  }
+}
+
+@keyframes header-right-group-animation {
+  to {
+    opacity: 1;
+  }
+}
+
+/* =====================================
+ * Responsive Styles for Small Screens
+ * ===================================== */
+@media (width >= 22.6875rem) { /* 363px */
+  .header__download-resume-btn {
+    padding: 0.8rem 1rem;
+  }
+}
+
+/* =====================================
+ * Work Status Dot Pulse Animations
+ * ===================================== */
+@keyframes active-pulse-shadow {
+  0%, 100% {
+    box-shadow: 0 0 10px 2px rgba(0, 255, 136, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 20px 10px rgba(0, 255, 136, 0.2);
+  }
+}
+
+@keyframes not-active-pulse-shadow {
+  0%, 100% {
+    box-shadow: 0 0 10px 2px rgba(255, 77, 77, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 20px 10px rgba(255, 77, 77, 0.2);
+  }
+}

@@ -1,0 +1,114 @@
+/* =====================================
+ * Home Section Base Styles
+ * ===================================== */
+ .home-section {
+  padding-top: 200px;
+  padding-bottom: 250px;
+}
+
+/* Main Skill Text */
+.home-section__main-skill {
+  color: var(--main-color);
+  font-size: 1.625rem;
+  white-space: nowrap;
+  transform: translateY(30px);
+  opacity: 0;
+  animation: main-skill-start-animation 1.5s forwards;
+  animation-delay: 0.7s;
+}
+
+@keyframes main-skill-start-animation{
+  to{
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+/* Name Heading */
+.home-section__name {
+  color: var(--primary-color);
+  font-size: 4rem;
+  line-height: 0.9em;
+  margin-bottom: 14rem;
+  margin-top: 1rem;
+  transform: translateY(50px);
+  opacity: 0;
+  animation: name-start-animation 1.9s forwards;
+  animation-delay: 0.7s;
+}
+
+@keyframes name-start-animation{
+  to{
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+
+/* =====================================
+ * Other Details List
+ * ===================================== */
+.home-section__other-details-list.d-grid {
+  display: -ms-grid;
+  display: grid;
+  row-gap: 1.2rem;
+}
+
+/* Detail Item */
+.home-section__other-details-list .detail-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.8rem;
+  opacity: 0;
+  animation: other-details-start-animtion 2s forwards;
+  animation-delay: 1.5s;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@keyframes other-details-start-animtion{
+  to{
+    opacity: 1;
+  }
+}
+
+/* Detail Item Icon */
+.home-section__other-details-list .detail-item__icon {
+  --size: 1.4rem;
+
+  font-size: var(--size);
+  color: var(--main-color);
+}
+
+/* Detail Item Label */
+.home-section__other-details-list .detail-item__label {
+  color: var(--primary-color);
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+/* =====================================
+ * Responsive Adjustments (min-width: 650px)
+ * ===================================== */
+@media (width >= 40.625rem /* 650px */) {
+  /* Home Section Padding Adjustment */
+  .home-section {
+    padding-top: 180px;
+  }
+
+  /* Name Heading Margin Adjustment */
+  .home-section__name {
+    margin-bottom: 5rem;
+  }
+
+  /* Other Details List Grid Layout */
+  .home-section__other-details-list.d-grid {
+    -ms-grid-columns: 1fr 2rem 1fr;
+    grid-template-columns: 1fr 1fr;
+    -webkit-column-gap: 2rem;
+       -moz-column-gap: 2rem;
+            column-gap: 2rem;
+  }
+}

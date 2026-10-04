@@ -1,0 +1,325 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CV - Nguyen Duong Truong Vu</title>
+  <!-- 3D Lanyard Badge Generator Bundle -->
+  <script>
+    // Polyfill for Canvas roundRect (for older browsers)
+    if (!CanvasRenderingContext2D.prototype.roundRect) {
+      CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+        if (w < 2 * r) r = w / 2;
+        if (h < 2 * r) r = h / 2;
+        this.beginPath();
+        this.moveTo(x + r, y);
+        this.arcTo(x + w, y, x + w, y + h, r);
+        this.arcTo(x + w, y + h, x, y + h, r);
+        this.arcTo(x, y + h, x, y, r);
+        this.arcTo(x, y, x + w, y, r);
+        this.closePath();
+      };
+    }
+  </script>
+  <script type="module">
+    // Inline badge generator function optimized for cv.html static use
+    async function generateAndDisplayBadge() {
+      const avatarImg = document.querySelector('.avatar');
+      const profilePhotoPath = 'images-and-icons/images/my-profile.png';
+
+      // Load image helper
+      const loadImage = (src) =>
+        new Promise((resolve, reject) => {
+          const img = new Image();
+          img.crossOrigin = 'anonymous';
+          img.onload = () => resolve(img);
+          img.onerror = reject;
+          img.src = src;
+        });
+
+      try {
+        const width = 600;
+        const height = 900;
+
+        // Load profile photo
+        let photo = null;
+        try {
+          photo = await loadImage(profilePhotoPath);
+        } catch (e) {
+          console.warn('Failed to load profile photo for CV badge:', e);
+        }
+
+        // Create front badge canvas
+        const frontCanvas = document.createElement('canvas');
+        frontCanvas.width = width;
+        frontCanvas.height = height;
+        const fCtx = frontCanvas.getContext('2d');
+
+        // Background
+        const bgGrad = fCtx.createLinearGradient(0, 0, width, height);
+        bgGrad.addColorStop(0, '#0a0f1d');
+        bgGrad.addColorStop(0.5, '#111827');
+        bgGrad.addColorStop(1, '#070b14');
+        fCtx.fillStyle = bgGrad;
+        fCtx.fillRect(0, 0, width, height);
+
+        // Decorative mesh grid
+        fCtx.strokeStyle = 'rgba(0, 212, 255, 0.08)';
+        fCtx.lineWidth = 1;
+        for (let x = 0; x < width; x += 40) {
+          fCtx.beginPath();
+          fCtx.moveTo(x, 0);
+          fCtx.lineTo(x, height);
+          fCtx.stroke();
+        }
+        for (let y = 0; y < height; y += 40) {
+          fCtx.beginPath();
+          fCtx.moveTo(0, y);
+          fCtx.lineTo(width, y);
+          fCtx.stroke();
+        }
+
+        // Neon border
+        fCtx.strokeStyle = '#00d4ff';
+        fCtx.lineWidth = 4;
+        fCtx.strokeRect(18, 18, width - 36, height - 36);
+
+        // Corner accents
+        fCtx.fillStyle = '#00d4ff';
+        const cornerSize = 16;
+        fCtx.fillRect(18, 18, cornerSize, 4);
+        fCtx.fillRect(18, 18, 4, cornerSize);
+        fCtx.fillRect(width - 18 - cornerSize, 18, cornerSize, 4);
+        fCtx.fillRect(width - 22, 18, 4, cornerSize);
+        fCtx.fillRect(18, height - 22, cornerSize, 4);
+        fCtx.fillRect(18, height - 18 - cornerSize, 4, cornerSize);
+        fCtx.fillRect(width - 18 - cornerSize, height - 22, cornerSize, 4);
+        fCtx.fillRect(width - 22, height - 18 - cornerSize, 4, cornerSize);
+
+        // Header banner
+        fCtx.fillStyle = '#00d4ff';
+        fCtx.font = 'bold 22px "Inter", sans-serif';
+        fCtx.textAlign = 'center';
+        fCtx.letterSpacing = '3px';
+        fCtx.fillText('DEVELOPER PASS', width / 2, 70);
+
+        fCtx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+        fCtx.font = '500 13px "Inter", sans-serif';
+        fCtx.fillText('VERIFIED TALENT • 2026', width / 2, 95);
+
+        // Avatar frame
+        const avatarSize = 340;
+        const avatarX = (width - avatarSize) / 2;
+        const avatarY = 125;
+
+        fCtx.save();
+        fCtx.beginPath();
+        fCtx.roundRect(avatarX, avatarY, avatarSize, avatarSize, 24);
+        fCtx.fillStyle = '#1e293b';
+        fCtx.fill();
+        fCtx.strokeStyle = '#00d4ff';
+        fCtx.lineWidth = 3;
+        fCtx.stroke();
+        fCtx.clip();
+
+        if (photo) {
+          const scale = Math.max(avatarSize / photo.width, avatarSize / photo.height);
+          const sw = photo.width * scale;
+          const sh = photo.height * scale;
+          const sx = avatarX + (avatarSize - sw) / 2;
+          const sy = avatarY + (avatarSize - sh) / 2;
+          fCtx.drawImage(photo, sx, sy, sw, sh);
+        } else {
+          fCtx.fillStyle = '#334155';
+          fCtx.fillRect(avatarX, avatarY, avatarSize, avatarSize);
+        }
+        fCtx.restore();
+
+        // Name
+        fCtx.fillStyle = '#ffffff';
+        fCtx.font = 'bold 30px "Inter", sans-serif';
+        fCtx.textAlign = 'center';
+        fCtx.letterSpacing = '1px';
+        fCtx.fillText('TRƯỜNG VŨ', width / 2, 515);
+
+        // Role
+        fCtx.fillStyle = '#00d4ff';
+        fCtx.font = '600 18px "Inter", sans-serif';
+        fCtx.letterSpacing = '2px';
+        fCtx.fillText('FULL-STACK DEVELOPER', width / 2, 550);
+
+        // University
+        fCtx.fillStyle = '#94a3b8';
+        fCtx.font = '500 15px "Inter", sans-serif';
+        fCtx.fillText('Đại học Công Nghệ TP.HCM (HUTECH)', width / 2, 580);
+
+        // Chip Icon
+        const chipX = 55;
+        const chipY = 640;
+        fCtx.fillStyle = '#d4af37';
+        fCtx.beginPath();
+        fCtx.roundRect(chipX, chipY, 65, 48, 8);
+        fCtx.fill();
+        fCtx.strokeStyle = '#854d0e';
+        fCtx.lineWidth = 1.5;
+        fCtx.stroke();
+
+        // Barcode lines
+        const barcodeX = 55;
+        const barcodeY = 740;
+        const barcodeW = width - 110;
+        fCtx.fillStyle = '#ffffff';
+        for (let bx = 0; bx < barcodeW; bx += 7) {
+          const barWidth = (bx % 3 === 0) ? 4 : (bx % 2 === 0 ? 2 : 3);
+          fCtx.fillRect(barcodeX + bx, barcodeY, barWidth, 55);
+        }
+
+        // Barcode number
+        fCtx.fillStyle = '#94a3b8';
+        fCtx.font = '13px monospace';
+        fCtx.textAlign = 'center';
+        fCtx.fillText('BOOP-2026-VN-0333030276', width / 2, 825);
+
+        // Status indicator
+        fCtx.fillStyle = '#22c55e';
+        fCtx.beginPath();
+        fCtx.arc(width - 65, 664, 7, 0, Math.PI * 2);
+        fCtx.fill();
+        fCtx.fillStyle = '#94a3b8';
+        fCtx.font = '600 13px "Inter", sans-serif';
+        fCtx.textAlign = 'right';
+        fCtx.fillText('AVAILABLE', width - 80, 669);
+
+        // Convert canvas to data URL and set as avatar src
+        const badgeDataUrl = frontCanvas.toDataURL('image/png');
+        avatarImg.src = badgeDataUrl;
+      } catch (error) {
+        console.error('Failed to generate CV badge:', error);
+        // Keep original profile picture as fallback
+      }
+    }
+
+    // Generate badge when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', generateAndDisplayBadge);
+    } else {
+      generateAndDisplayBadge();
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "Inter", sans-serif; background: #f0f2f5; color: #1a1a2e; font-size: 13px; line-height: 1.5; }
+    .page { width: 210mm; min-height: 297mm; margin: 20px auto; background: #fff; display: grid; grid-template-columns: 220px 1fr; box-shadow: 0 10px 40px rgba(0,0,0,0.15); }
+    .sidebar { background: #0f172a; color: #e2e8f0; padding: 36px 20px; display: flex; flex-direction: column; gap: 28px; }
+    .avatar-wrap { display: flex; justify-content: center; }
+    .avatar { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid #f59e0b; }
+    .sidebar-name { text-align: center; }
+    .sidebar-name h1 { font-size: 15px; font-weight: 700; color: #fff; line-height: 1.3; }
+    .sidebar-name p { font-size: 11px; color: #f59e0b; font-weight: 500; margin-top: 4px; }
+    .sidebar-section h3 { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #f59e0b; border-bottom: 1px solid #334155; padding-bottom: 6px; margin-bottom: 12px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 10px; font-size: 11.5px; color: #cbd5e1; }
+    .contact-item .icon { font-size: 13px; color: #f59e0b; flex-shrink: 0; }
+    .contact-item a { color: #cbd5e1; text-decoration: none; word-break: break-all; }
+    .skill-list { display: flex; flex-direction: column; gap: 8px; }
+    .skill-item { font-size: 11.5px; color: #cbd5e1; }
+    .skill-bar-bg { height: 4px; background: #1e293b; border-radius: 2px; margin-top: 4px; }
+    .skill-bar { height: 4px; background: #f59e0b; border-radius: 2px; }
+    .tool-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tool-tag { background: #1e293b; color: #94a3b8; font-size: 10px; padding: 3px 8px; border-radius: 4px; border: 1px solid #334155; }
+    .lang-item { display: flex; justify-content: space-between; font-size: 11.5px; color: #cbd5e1; margin-bottom: 6px; }
+    .lang-level { display: flex; gap: 3px; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #334155; }
+    .dot.filled { background: #f59e0b; }
+    .main { padding: 36px 28px; display: flex; flex-direction: column; gap: 24px; }
+    .main-section h2 { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #0f172a; border-bottom: 2px solid #f59e0b; padding-bottom: 6px; margin-bottom: 14px; }
+    .about-text { font-size: 12px; color: #475569; line-height: 1.7; }
+    .timeline { display: flex; flex-direction: column; gap: 14px; }
+    .timeline-item { display: grid; grid-template-columns: 90px 1fr; gap: 12px; }
+    .timeline-year { font-size: 10.5px; color: #94a3b8; font-weight: 500; padding-top: 2px; text-align: right; }
+    .timeline-content { border-left: 2px solid #e2e8f0; padding-left: 14px; position: relative; }
+    .timeline-content::before { content: ""; position: absolute; left: -5px; top: 5px; width: 8px; height: 8px; border-radius: 50%; background: #f59e0b; }
+    .timeline-content h4 { font-size: 12.5px; font-weight: 600; color: #0f172a; }
+    .timeline-content p { font-size: 11px; color: #64748b; margin-top: 2px; }
+    .project-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 14px; border-left: 3px solid #f59e0b; margin-bottom: 10px; }
+    .project-card h4 { font-size: 12.5px; font-weight: 600; color: #0f172a; }
+    .project-card p { font-size: 11px; color: #64748b; margin-top: 3px; }
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+    .tech { background: #0f172a; color: #f59e0b; font-size: 9.5px; padding: 2px 7px; border-radius: 3px; }
+    .status-badge { display: inline-flex; align-items: center; gap: 6px; background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; }
+    .print-btn { position: fixed; bottom: 24px; right: 24px; background: #f59e0b; color: #0f172a; border: none; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: "Inter", sans-serif; }
+    @media print { body { background: white; } .page { margin: 0; box-shadow: none; width: 100%; } .print-btn { display: none; } }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="sidebar">
+    <div class="avatar-wrap">
+      <img class="avatar" src="images-and-icons/images/my-profile.png" alt="Profile" />
+    </div>
+    <div class="sidebar-name">
+      <h1>Nguyen Duong<br>Truong Vu</h1>
+      <p>Full-Stack Developer</p>
+    </div>
+    <div class="sidebar-section">
+      <h3>Lien he</h3>
+      <div class="contact-item"><span class="icon">📧</span><span>truongvu05th01@gmail.com</span></div>
+      <div class="contact-item"><span class="icon">📞</span><span>0333 030 276</span></div>
+      <div class="contact-item"><span class="icon">📍</span><span>TP. Ho Chi Minh</span></div>
+      <div class="contact-item"><span class="icon">🐙</span><a href="https://github.com/truongvu05th01-boop">github.com/truongvu05th01-boop</a></div>
+    </div>
+    <div class="sidebar-section">
+      <h3>Ky nang</h3>
+      <div class="skill-list">
+        <div class="skill-item">HTML / CSS<div class="skill-bar-bg"><div class="skill-bar" style="width:90%"></div></div></div>
+        <div class="skill-item">JavaScript<div class="skill-bar-bg"><div class="skill-bar" style="width:80%"></div></div></div>
+        <div class="skill-item">Node.js / Express<div class="skill-bar-bg"><div class="skill-bar" style="width:75%"></div></div></div>
+        <div class="skill-item">Python<div class="skill-bar-bg"><div class="skill-bar" style="width:70%"></div></div></div>
+        <div class="skill-item">Java / Spring Boot<div class="skill-bar-bg"><div class="skill-bar" style="width:65%"></div></div></div>
+        <div class="skill-item">Git / GitHub<div class="skill-bar-bg"><div class="skill-bar" style="width:85%"></div></div></div>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <h3>Cong cu</h3>
+      <div class="tool-tags">
+        <span class="tool-tag">HTML</span><span class="tool-tag">CSS</span><span class="tool-tag">JavaScript</span>
+        <span class="tool-tag">Node.js</span><span class="tool-tag">Express</span><span class="tool-tag">MongoDB</span>
+        <span class="tool-tag">Python</span><span class="tool-tag">Java</span><span class="tool-tag">Git</span><span class="tool-tag">GitHub</span>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <h3>Ngon ngu</h3>
+      <div class="lang-item"><span>Tieng Viet</span><div class="lang-level"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div></div>
+      <div class="lang-item"><span>Tieng Anh</span><div class="lang-level"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div></div></div>
+    </div>
+  </div>
+  <div class="main">
+    <div><span class="status-badge"><span class="status-dot"></span>San sang di lam</span></div>
+    <div class="main-section">
+      <h2>Gioi thieu</h2>
+      <p class="about-text">Toi la sinh vien nganh Cong Nghe Thong Tin tai Dai hoc Cong Nghe TP.HCM (HUTECH), dam me xay dung cac ung dung web va mobile hien dai. Toi co kinh nghiem thuc hanh voi HTML/CSS/JavaScript, Node.js, Express.js, Python va Java/Spring Boot. Toi luon chu dong hoc hoi cong nghe moi va tim kiem co hoi thuc tap de phat trien ban than.</p>
+    </div>
+    <div class="main-section">
+      <h2>Hoc van</h2>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-year">2023 - nay</div><div class="timeline-content"><h4>Dai hoc Cong Nghe TP.HCM (HUTECH)</h4><p>Nganh Cong Nghe Thong Tin - Dang theo hoc</p></div></div>
+        <div class="timeline-item"><div class="timeline-year">2020 - 2023</div><div class="timeline-content"><h4>Trung hoc pho thong</h4><p>Tot nghiep nam 2023</p></div></div>
+        <div class="timeline-item"><div class="timeline-year">2014 - 2018</div><div class="timeline-content"><h4>Trung hoc co so</h4><p>Tot nghiep nam 2018</p></div></div>
+        <div class="timeline-item"><div class="timeline-year">- 2014</div><div class="timeline-content"><h4>Tieu hoc</h4><p>Tot nghiep nam 2014</p></div></div>
+      </div>
+    </div>
+    <div class="main-section">
+      <h2>Du an</h2>
+      <div class="project-card"><h4>Portfolio Website</h4><p>Website portfolio ca nhan hien thi thong tin, ky nang va du an.</p><div class="tech-tags"><span class="tech">HTML</span><span class="tech">CSS</span><span class="tech">JavaScript</span></div></div>
+      <div class="project-card"><h4>GitHub Projects</h4><p>Cac du an thuc hanh va bai tap lap trinh tren GitHub.</p><div class="tech-tags"><span class="tech">Node.js</span><span class="tech">Python</span><span class="tech">Git</span></div></div>
+    </div>
+    <div class="main-section">
+      <h2>Muc tieu</h2>
+      <p class="about-text">Muc tieu ngan han la tim duoc vi tri thuc tap tai mot cong ty cong nghe de tich luy kinh nghiem thuc te. Dai han, toi huong den tro thanh mot Full-Stack Developer chuyen nghiep.</p>
+    </div>
+  </div>
+</div>
+<button class="print-btn" onclick="window.print()">In / Luu PDF</button>
+</body>
+</html>

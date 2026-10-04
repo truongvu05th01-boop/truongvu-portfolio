@@ -1,0 +1,32 @@
+# Proprietary License for Portfolio Website  
+
+## 1. License Grant  
+This Portfolio Website ("Software") is licensed, not sold. Upon purchase, you are granted a **non-exclusive, non-transferable, and limited** license to:  
+✔ Modify the Software's content and code **only after purchase**.  
+✔ Use the Software for personal or commercial purposes.  
+
+## 2. Restrictions  
+You **are NOT allowed** to:  
+❌ Redistribute, resell, sublicense, or publicly share the Software code in any form.   
+❌ Use the Software to create derivative works intended for resale.  
+
+## 3. Preview and Public Repository  
+- The Software may be **publicly previewed** via GitHub or other hosting services, but the full source code is not freely available.  
+- Unauthorized attempts to copy, modify, or distribute the Software without purchasing a license are strictly prohibited.  
+
+## 4. Ownership  
+Takagi Dev retains full ownership of the Software. Purchasing this license **does not** transfer any intellectual property rights to the buyer.  
+
+## 5. Liability and Warranty  
+- The Software is provided "AS IS" without any warranties, express or implied.  
+- The developer is not responsible for any damages or losses resulting from the use of the Software.  
+
+## 6. Termination  
+Failure to comply with this license agreement will result in automatic termination of your rights to use the Software.  
+
+## 7. Contact  
+For purchasing or licensing inquiries, contact:  
+📩 **takagi4.dev.000@gmail.com  
+
+---
+© Takagi Dev, 2026. All Rights Reserved.

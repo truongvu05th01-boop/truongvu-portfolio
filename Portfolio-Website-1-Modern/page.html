@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Website</title>
+  <!-- External Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&family=Cinzel:wght@400..900&family=DM+Serif+Display:ital@0;1&family=Dancing+Script:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles/normalize.css?v=3">
+  <link rel="stylesheet" href="styles/global.css?v=3">
+  <link rel="stylesheet" href="styles/header.css?v=3">
+  <link rel="stylesheet" href="styles/navigation.css?v=3">
+  <link rel="stylesheet" href="styles/sections-style/home-section.css?v=3">
+  <link rel="stylesheet" href="styles/sections-style/about-section.css?v=3">
+  <link rel="stylesheet" href="styles/sections-style/projects-section.css?v=3">
+  <link rel="stylesheet" href="styles/sections-style/skills-section.css?v=3">
+  <link rel="stylesheet" href="styles/sections-style/contact-section.css?v=3">
+  <link rel="stylesheet" href="styles/footer.css?v=3">
+  <link rel="stylesheet" href="styles/background.css?v=3">
+  <!-- JavaScript Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script type="module" defer src="https://unpkg.com/@splinetool/viewer@1.9.89/build/spline-viewer.js"></script>
+</head>
+<body>
+  <!-- dot light following my cursor -->
+  <!-- This dot-light is from spline website , follow the creator of this spline👉 https://app.spline.design/@scottvisuals-->
+  <spline-viewer class="dot-light-cursor" url="https://prod.spline.design/XUuPynbMrquwQa2s/scene.splinecode"></spline-viewer>
+
+  <!-- floating dots animation-->
+  <div class="dots-background">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <!-- Add more dots as needed -->
+  </div>
+
+  <!-- 3D Interactive Lanyard Profile Card -->
+  <div id="lanyard-profile-container" class="background-lanyard-card">
+    <div id="lanyard-root"></div>
+  </div>
+
+  <!-- Profile Picture Background (Fallback / Preload), 
+       To change the img, go to data folder (personal-data.js)
+       To update the style go to background.css -->
+  <img class="background-profile-pic" rel="preload" alt="profile-photo">
+  
+  <!-- Blur Background -->
+  <div class="blur-background"></div>
+
+  <!-- Header-->
+  <header class="main-wrapper">
+    <!-- Header content is dynamically rendered from the data folder (personal-data.js) -->
+  </header>
+
+  <div class="main-wrapper">
+    <main class="sections-wraper">
+      <!-- Home Section -->
+      <section id="home-section" class="home-section">
+        <!-- Update home content from the data folder (personal-data.js) -->
+        <!-- Contents is render dynamically in render-contents.js -->
+      </section>
+
+      <!-- About Section -->
+      <section id="about-section" class="about-section">
+        <!-- Update about content from the data folder (about-data.js) -->
+        <!-- Contents is render dynamically in render-contents.js -->
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects-section" class="projects-section">
+        <h1 class="projects-section__heading heading">Projects</h1>
+        <div class="project-section__project-card-list d-grid">
+        <!-- Update project content from the data folder (projects-data.js) -->
+        <!-- Contents is render dynamically in render-contents.js -->
+        </div>
+      </section>
+
+      <!-- Skills and Tools Section -->
+      <section id="skills-tools-section" class="skills-tools-section">
+        <!-- Update skill and tool content from the data folder (skills-tools-data.js) -->
+        <!-- Contents is render dynamically in render-content.js -->
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact-section" class="contact-section">
+        <h1 class="contact-section__heading heading">Contact Me</h1>
+        <form id="contact-form">
+          <div class="input-divider">
+            <input type="text" id="name-input" placeholder="Your name" required>
+            <input type="email" id="email-input" placeholder="Your email" required>
+          </div>        
+          <textarea name="message" id="message-input" placeholder="Your message" required></textarea>
+          <button class="submit-btn" type="submit">Send</button>
+        </form>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <!-- Add your personal social-media link from the data folder (personal-data.js) -->
+        <!-- Contents is render dynamically in render-content.js -->
+    </footer>
+  </div>
+
+  <!-- Sections navigation -->
+  <nav class="section-nav">
+    <div class="nav-list start-animate">
+      <p class="nav-list__active-background"></p>
+      
+      <!-- Navigation Links -->
+      <a data-value="home-section" class="nav-list__link" href="#">
+        <i class="ph ph-house nav-list__link-icon"></i>
+        <span class="nav-list__link-label">Home</span>
+      </a>
+      <a data-value="about-section" class="nav-list__link" href="#about-section">
+        <i class="ph ph-user nav-list__link-icon"></i>
+        <span class="nav-list__link-label">About</span>
+      </a>
+      <a data-value="projects-section" class="nav-list__link" href="#projects-section">
+        <i class="ph ph-folder-open nav-list__link-icon"></i>
+        <span class="nav-list__link-label">Projects</span>
+      </a>
+      <a data-value="skills-tools-section" class="nav-list__link" href="#skills-tools-section">
+        <i class="ph ph-toolbox nav-list__link-icon"></i>
+        <span class="nav-list__link-label">Skills</span>
+      </a>
+      <a data-value="contact-section" class="nav-list__link" href="#contact-section">
+        <i class="ph ph-paper-plane nav-list__link-icon"></i>
+        <span class="nav-list__link-label">Contact</span>
+      </a>
+    </div>
+  </nav>
+  
+  <!-- 3D Lanyard Interactive Bundle -->
+  <script src="lanyard-dist/lanyard-widget.js"></script>
+  <!-- Main JavaScript File -->
+  <script type="module" src="script/main.js"></script>
+</body>
+</html>

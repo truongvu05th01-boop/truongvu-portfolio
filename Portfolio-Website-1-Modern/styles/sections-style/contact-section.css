@@ -1,0 +1,43 @@
+/* =====================================
+ * Contact Section Base & Form Fields
+ * ===================================== */
+.contact-section {
+  padding-bottom: 220px;
+}
+
+.contact-section form input,
+ .contact-section form textarea {
+   width: 100%;
+   padding: 0.7rem;
+   margin-bottom: 1rem;
+   border: none;
+   border-radius: 5px;
+ }
+ 
+ /* Textarea Specific Styles */
+ .contact-section form textarea {
+   height: 8rem;
+ }
+ 
+ /* Submit Button */
+ .contact-section form .submit-btn {
+   width: 100%;
+   font-size: 1.1rem;
+   font-weight: 700;
+   background-color: var(--main-color);
+   border: none;
+   padding: 0.9rem 0;
+   border-radius: 8px;
+ }
+ 
+ /* =====================================
+  * Responsive Adjustments (min-width: 600px)
+  * ===================================== */
+ @media (width >= 37.5rem /* 600px */) {
+   /* Input Divider (Flex Layout) */
+   .contact-section form .input-divider {
+     display: flex;
+     gap: 0.8rem;
+   }
+ }
+ 

@@ -1,0 +1,100 @@
+/* =====================================
+ * Skills List Section
+ * ===================================== */
+ .skills-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+  padding-left: 25px;
+  margin-bottom: 6rem;
+}
+
+/* Skill Item */
+.skills-list__skill {
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding-left: 0.1rem;
+}
+
+/* Skill Marker (Bullet) */
+.skills-list__skill::marker {
+  color: var(--main-color);
+  font-size: 1.75rem;
+}
+
+/* =====================================
+ * Tools List Section
+ * ===================================== */
+.tools-list.d-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 4rem;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+}
+
+/* Tool Item */
+.tools-list__tool {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+/* Tool Icon */
+.tools-list__tool-icon {
+  --tool-icon-size: 64px;
+
+  height: var(--tool-icon-size);
+  width: var(--tool-icon-size);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+/* Tool Label */
+.tools-list__tool-label {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+/* =====================================
+ * Responsive Adjustments (min-width: 600px)
+ * ===================================== */
+@media (width >= 37.5rem /* 600px */) {
+  /* Tools List Grid Layout Adjustment */
+  .tools-list.d-grid {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 3rem 1fr 3rem 1fr 3rem 1fr 3rem 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    width: 100%;
+    row-gap: 3rem;
+    -webkit-column-gap: 3rem;
+       -moz-column-gap: 3rem;
+            column-gap: 3rem;
+  }
+
+  /* Tool Item Width Adjustment */
+  .tools-list__tool {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+}
