@@ -18,11 +18,11 @@
   <link rel="stylesheet" href="styles/navigation.css?v=3">
   <link rel="stylesheet" href="styles/sections-style/home-section.css?v=3">
   <link rel="stylesheet" href="styles/sections-style/about-section.css?v=3">
-  <link rel="stylesheet" href="styles/sections-style/projects-section.css?v=3">
-  <link rel="stylesheet" href="styles/sections-style/skills-section.css?v=3">
+  <link rel="stylesheet" href="styles/sections-style/projects-section.css?v=4">
+  <link rel="stylesheet" href="styles/sections-style/skills-section.css?v=4">
   <link rel="stylesheet" href="styles/sections-style/contact-section.css?v=3">
   <link rel="stylesheet" href="styles/footer.css?v=3">
-  <link rel="stylesheet" href="styles/background.css?v=3">
+  <link rel="stylesheet" href="styles/background.css?v=4">
   <!-- JavaScript Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
@@ -64,6 +64,7 @@
        To update the style go to background.css -->
   <img class="background-profile-pic" rel="preload" alt="profile-photo">
   
+  
   <!-- Blur Background -->
   <div class="blur-background"></div>
 
@@ -89,6 +90,8 @@
       <!-- Projects Section -->
       <section id="projects-section" class="projects-section">
         <h1 class="projects-section__heading heading">Projects</h1>
+        <!-- 3D Interactive Device Showcase (Laptop / Phone) -->
+        <div id="project-3d-container"></div>
         <div class="project-section__project-card-list d-grid">
         <!-- Update project content from the data folder (projects-data.js) -->
         <!-- Contents is render dynamically in render-contents.js -->
@@ -155,5 +158,7 @@
   <script src="lanyard-dist/lanyard-widget.js"></script>
   <!-- Main JavaScript File -->
   <script type="module" src="script/main.js"></script>
+  <!-- Galaxy Particle Network — Interactive 3D Background -->
+  <script src="script/galaxy-particles.js" defer></script>
 </body>
-</html>
+</html>

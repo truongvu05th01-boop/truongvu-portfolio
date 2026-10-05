@@ -57,11 +57,13 @@ initThemeToggle();
 
 
 /**
- * Initialize animations when the page is fully loaded
+ * ── Initialize animations when the page is fully loaded
  */
 window.addEventListener('load', () => {
   handleAllAnimations();
 });
+
+
 
 /**
  * Change dot color based on work status

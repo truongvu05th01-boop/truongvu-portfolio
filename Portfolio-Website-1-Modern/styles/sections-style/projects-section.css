@@ -1,92 +1,411 @@
 /* =====================================
- * Project Section - Project Card List
+ * Projects Section Styles
+ * Includes: 3D Interactive Device Showcase (Laptop & Phone),
+ * Project Cards Grid, and Synchronized Hover Effects
  * ===================================== */
- .project-section__project-card-list.d-grid {
-  display: -ms-grid;
-  display: grid;
-  row-gap: 3.5rem;
-  border-left: 0.9px solid rgba(255, 255, 255, 0.224);
-  padding-left: 1.3rem;
-  margin-left: 0.1rem;
-  margin-top: 2rem;
-}
 
-/* =====================================
- * Project Card
- * ===================================== */
-.project-card {
-  --project-card-side-space: 1rem;
-
+.projects-section {
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   width: 100%;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-/* Project Card Hover Effect */
-.project-card:hover .project-card__arrow-icon {
-  right: 0.6rem;
-  top: 0.8rem;
-}
-
-/* Project Card Arrow Icon */
-.project-card__arrow-icon {
-  --project-arrow-size: 26px;
-
-  position: absolute;
-  right: 1.1rem;
-  top: 1.3rem;
-  height: var(--project-arrow-size);
-  width: var(--project-arrow-size);
-  transition: 0.3s;
-}
-
-/* Project Card Image */
-.project-card__img {
-  border-radius: inherit;
-  height: clamp(220px, 70vw, 260px);
-  z-index: -1;
-  margin-bottom: 0.6rem;
-}
-
-/* Project Card Info Container */
-.project-card__info {
-  padding-inline: 0.3rem;
-}
-
-/* Project Title */
-.project-card__info-title {
-  font-size: 1.125rem;
-  font-weight: 800;
-  margin-bottom: 0.4rem;
-  color: white;
-}
-
-/* Project Detail Text */
-.project-card__info-detail {
-  font-size: 0.8rem;
-  opacity: 0.5;
-  color: white;
+  min-height: 100vh;
 }
 
 /* =====================================
- * Responsive Adjustments (min-width: 600px)
+ * 3D Interactive Device Showcase
  * ===================================== */
-@media (width >= 37.5rem /* 600px */) {
-  /* Project Card List Grid Layout */
+.project-3d-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 2.8rem;
+  background: rgba(4, 15, 29, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--surface-border);
+  border-radius: 24px;
+  padding: 1.25rem 1.4rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 25px var(--main-color-dim);
+  transition: all 0.35s ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+:root.light-mode .project-3d-wrapper {
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 16px 36px rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+/* Top Toolbar */
+.project-3d-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.device-switch-group {
+  display: inline-flex;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 12px;
+  padding: 3px;
+  gap: 3px;
+}
+
+.device-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+.device-toggle-btn i {
+  font-size: 0.95rem;
+}
+
+.device-toggle-btn:hover {
+  color: var(--primary-color);
+}
+
+.device-toggle-btn.active {
+  color: #030d1a;
+  background: var(--main-color);
+  box-shadow: 0 2px 10px var(--main-color-dim);
+}
+
+:root.light-mode .device-toggle-btn.active {
+  color: #ffffff;
+}
+
+/* Slide Indicator & Controls */
+.slide-indicator-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.slide-counter {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+  margin-right: 0.3rem;
+}
+
+.control-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+}
+
+.control-btn:hover {
+  border-color: var(--main-color);
+  color: var(--main-color);
+  transform: scale(1.06);
+}
+
+/* 3D Viewport */
+.project-3d-viewport {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  touch-action: none;
+}
+
+.project-3d-viewport.is-grabbing {
+  cursor: grabbing;
+}
+
+.project-3d-viewport canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.viewport-drag-hint {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: rgba(3, 13, 26, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--surface-border);
+  padding: 0.3rem 0.65rem;
+  border-radius: 20px;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+:root.light-mode .viewport-drag-hint {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+/* Bottom HUD Project Info */
+.project-3d-hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 16px;
+  margin-top: 0.25rem;
+}
+
+.hud-project-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.hud-project-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.2rem;
+}
+
+.hud-category-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--main-color);
+}
+
+.hud-indicator-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--main-color);
+  box-shadow: 0 0 8px var(--main-color);
+}
+
+.hud-project-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0.15rem 0 0.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hud-project-detail {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin: 0;
+  white-space: normal;
+}
+
+.hud-project-actions {
+  flex-shrink: 0;
+}
+
+.hud-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: 12px;
+  background: var(--main-color);
+  color: #030d1a;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 4px 15px var(--main-color-dim);
+}
+
+:root.light-mode .hud-view-btn {
+  color: #ffffff;
+}
+
+.hud-view-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--main-color-glow);
+}
+
+/* Dots Navigation */
+.project-dots-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
+}
+
+.project-dot {
+  width: 22px;
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.18);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  padding: 0;
+}
+
+:root.light-mode .project-dot {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.project-dot.active {
+  width: 36px;
+  background: var(--main-color);
+  box-shadow: 0 0 10px var(--main-color);
+}
+
+/* =====================================
+ * Project Cards Grid List (Below 3D Showcase)
+ * ===================================== */
+.project-section__project-card-list.d-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 2rem;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.project-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 18px;
+  padding: 0.85rem;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+              border-color 0.35s ease,
+              box-shadow 0.35s ease,
+              background 0.35s ease;
+  text-decoration: none;
+}
+
+.project-card:hover,
+.project-card.is-featured-active {
+  transform: translateY(-5px);
+  border-color: var(--main-color);
+  background: rgba(0, 212, 255, 0.06);
+  box-shadow: 0 12px 30px var(--main-color-dim);
+}
+
+:root.light-mode .project-card:hover,
+:root.light-mode .project-card.is-featured-active {
+  background: rgba(59, 130, 246, 0.05);
+  box-shadow: 0 12px 28px rgba(59, 130, 246, 0.15);
+}
+
+.project-card__img {
+  width: 100%;
+  height: clamp(180px, 45vw, 220px);
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 0.85rem;
+  transition: transform 0.35s ease;
+}
+
+.project-card:hover .project-card__img {
+  transform: scale(1.02);
+}
+
+.project-card__arrow-icon {
+  position: absolute;
+  right: 1.25rem;
+  top: 1.25rem;
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.project-card:hover .project-card__arrow-icon {
+  transform: translate(3px, -3px);
+}
+
+.project-card__info {
+  padding-inline: 0.25rem;
+}
+
+.project-card__info-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-card__info-detail {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+/* =====================================
+ * Responsive Adjustments
+ * ===================================== */
+@media (min-width: 600px) {
   .project-section__project-card-list.d-grid {
-    -ms-grid-columns: 1fr 1.3rem 1fr;
     grid-template-columns: 1fr 1fr;
-    -webkit-column-gap: 1.3rem;
-       -moz-column-gap: 1.3rem;
-            column-gap: 1.3rem;
+    column-gap: 1.25rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-3d-viewport {
+    height: 340px;
+  }
+
+  .project-3d-hud {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .hud-project-actions {
+    width: 100%;
+  }
+
+  .hud-view-btn {
+    width: 100%;
+    justify-content: center;
   }
 }

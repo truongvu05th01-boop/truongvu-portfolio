@@ -53,11 +53,20 @@
   .background-lanyard-card {
     right: -40px;
     width: 520px;
+    transition: opacity 0.5s ease;
   }
   body.lanyard-loaded .background-profile-pic {
     opacity: 0 !important;
     pointer-events: none !important;
     transition: opacity 0.5s ease;
+  }
+
+  body.hide-lanyard .background-lanyard-card {
+    display: none !important;
+  }
+  body.hide-lanyard .background-profile-pic {
+    opacity: 1 !important;
+    pointer-events: auto !important;
   }
 }
 
@@ -117,6 +126,15 @@
 }
 
 /* =====================================
+ * Contact Profile Picture (Handled via .background-profile-pic & sectionProfileMap)
+ * ===================================== */
+body.at-contact-section .background-profile-pic {
+  bottom: auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* =====================================
  * Blur Background (Disabled)
  * ===================================== */
 .blur-background {
@@ -124,7 +142,30 @@
 }
 
 /* =====================================
+ * Galaxy Particle Network Canvas
+ * Full-screen interactive 3D particle field
+ * ===================================== */
+#galaxy-particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;        /* Above page background, below all content */
+  pointer-events: none; /* Canvas captures no clicks itself — JS handles it via window */
+  display: block;
+  opacity: 0;
+  animation: galaxy-fade-in 2.5s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes galaxy-fade-in {
+  to { opacity: 1; }
+}
+
+/* =====================================
  * Dot Background Animation
+ * (legacy floating dots — hidden when galaxy canvas is present)
  * ===================================== */
 .dots-background {
   position: fixed;
@@ -135,6 +176,8 @@
   overflow: hidden;
   z-index: -11;
   pointer-events: none;
+  /* Hide legacy dots — galaxy particles replace them */
+  display: none !important;
 }
 
 .dot {

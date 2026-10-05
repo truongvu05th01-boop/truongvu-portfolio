@@ -47,12 +47,29 @@ const updateActiveLinkAndBlurBg = () => {
         activeLinkBg.style.display = 'block';
         activeLinkBg.style.left = `${linkPosition}px`; // Position the link background
         
-        // Update Lanyard profile image dynamically based on section
-        if (window.updateLanyardProfile) {
-          if (sectionId === 'about-section') {
-            window.updateLanyardProfile('about-profile.png');
+        // Hide Lanyard and show static profile image on About, Projects, Skills & Contact tabs
+        const sectionProfileMap = {
+          'about-section': 'images-and-icons/images/about-profile.png',
+          'projects-section': 'images-and-icons/images/projects-profile.png',
+          'skills-tools-section': 'images-and-icons/images/skills-profile.png',
+          'contact-section': 'images-and-icons/images/contact-profile.png',
+        };
+
+        if (sectionProfileMap[sectionId]) {
+          document.body.classList.add('hide-lanyard');
+          document.querySelector('.background-profile-pic').src = sectionProfileMap[sectionId] + '?v=' + Date.now();
+          // Toggle contact-specific class for positioning
+          if (sectionId === 'contact-section') {
+            document.body.classList.add('at-contact-section');
           } else {
-            // Revert to original profile picture for other sections
+            document.body.classList.remove('at-contact-section');
+          }
+        } else {
+          document.body.classList.remove('hide-lanyard');
+          document.body.classList.remove('at-contact-section');
+          document.querySelector('.background-profile-pic').src = `images-and-icons/images/${personalData.profilePicture || 'my-profile.png'}`;
+          
+          if (window.updateLanyardProfile) {
             window.updateLanyardProfile(personalData.profilePicture || 'my-profile.png');
           }
         }
@@ -118,5 +135,4 @@ function handleAllAnimations() {
   elementsFadeIn();
 }
 
-
-export default handleAllAnimations;
+export default handleAllAnimations;
